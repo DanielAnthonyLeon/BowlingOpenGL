@@ -1,0 +1,107 @@
+rootnode = gr.node('root')
+
+red = gr.material({1.0, 0.0, 0.0}, {0.1, 0.1, 0.1}, 10)
+blue = gr.material({0.0, 0.0, 1.0}, {0.1, 0.1, 0.1}, 10)
+green = gr.material({0.0, 1.0, 0.0}, {0.1, 0.1, 0.1}, 10)
+white = gr.material({1.0, 1.0, 1.0}, {0.1, 0.1, 0.1}, 10)
+
+shiny = gr.material({1.0, 0.0, 0.0}, {0.0, 0.0, 0.0}, 10)
+
+inchesInFoot = 12.0
+
+BowlingLaneWidthInInches = 35.0
+BowlingLaneLengthInFeet = 20.0
+
+BowlingLane = gr.mesh('plane2', 'BowlingLane')
+rootnode:add_child(BowlingLane)
+BowlingLane:set_material(red)
+-- A bowling lane is 42 inches wide and 60 feet long, with the length of being measured from the foul line to the head pin
+BowlingLane:scale(BowlingLaneWidthInInches/inchesInFoot, 1.0, BowlingLaneLengthInFeet)
+BowlingLane:translate(0.0, -2.8, -25.0)
+
+BowlingBall1 = gr.mesh('sphere_earth', 'BowlingBall1')
+rootnode:add_child(BowlingBall1)
+BowlingBall1:scale(0.5, 0.5, 0.5)
+BowlingBall1:set_material(green)
+BowlingBall1:translate(-0.8, -2.3, -6.0)
+
+BowlingBall2 = gr.mesh('sphere_pink', 'BowlingBall2')
+rootnode:add_child(BowlingBall2)
+BowlingBall2:set_material(blue)
+BowlingBall2:scale(0.5, 0.5, 0.5)
+BowlingBall2:translate(0.8, -2.3, -6.0)
+
+pinWidthInInches = 4.75
+pinHeightInInches = 15.0
+
+BowlingPin_scale = {0.3, 0.3, 0.3}
+BowlingPin_bottom = -1.95
+BowlingPin_gap = 1.0
+BowlingPin_headPos = -30.0
+
+-- row 1
+BowlingPin_row1X = 0.0
+BowlingPin1 = gr.mesh('bowlingpin', 'BowlingPin1')
+rootnode:add_child(BowlingPin1)
+BowlingPin1:set_material(red)
+BowlingPin1:scale(BowlingPin_scale[1], BowlingPin_scale[2], BowlingPin_scale[3])
+BowlingPin1:translate(0.0, BowlingPin_bottom, BowlingPin_headPos)
+
+-- row 2
+BowlingPin2_1 = gr.mesh('bowlingpin', 'BowlingPin2_1')
+rootnode:add_child(BowlingPin2_1)
+BowlingPin2_1:set_material(red)
+BowlingPin2_1:scale(BowlingPin_scale[1], BowlingPin_scale[2], BowlingPin_scale[3])
+BowlingPin2_1:translate(BowlingPin_row1X-0.5*BowlingPin_gap, BowlingPin_bottom, BowlingPin_headPos-BowlingPin_gap)
+
+BowlingPin2_2 = gr.mesh('bowlingpin', 'BowlingPin2_2')
+rootnode:add_child(BowlingPin2_2)
+BowlingPin2_2:set_material(red)
+BowlingPin2_2:scale(BowlingPin_scale[1], BowlingPin_scale[2], BowlingPin_scale[3])
+BowlingPin2_2:translate(BowlingPin_row1X+0.5*BowlingPin_gap, BowlingPin_bottom, BowlingPin_headPos-BowlingPin_gap)
+
+-- row 3
+BowlingPin3_1 = gr.mesh('bowlingpin', 'BowlingPin3_1')
+rootnode:add_child(BowlingPin3_1)
+BowlingPin3_1:set_material(red)
+BowlingPin3_1:scale(BowlingPin_scale[1], BowlingPin_scale[2], BowlingPin_scale[3])
+BowlingPin3_1:translate(BowlingPin_row1X-1*BowlingPin_gap, BowlingPin_bottom, BowlingPin_headPos-2*BowlingPin_gap)
+
+BowlingPin3_2 = gr.mesh('bowlingpin', 'BowlingPin3_2')
+rootnode:add_child(BowlingPin3_2)
+BowlingPin3_2:set_material(red)
+BowlingPin3_2:scale(BowlingPin_scale[1], BowlingPin_scale[2], BowlingPin_scale[3])
+BowlingPin3_2:translate(BowlingPin_row1X-0*BowlingPin_gap, BowlingPin_bottom, BowlingPin_headPos-2*BowlingPin_gap)
+
+BowlingPin3_3 = gr.mesh('bowlingpin', 'BowlingPin3_3')
+rootnode:add_child(BowlingPin3_3)
+BowlingPin3_3:set_material(red)
+BowlingPin3_3:scale(BowlingPin_scale[1], BowlingPin_scale[2], BowlingPin_scale[3])
+BowlingPin3_3:translate(BowlingPin_row1X+1*BowlingPin_gap, BowlingPin_bottom, BowlingPin_headPos-2*BowlingPin_gap)
+
+-- row 4
+BowlingPin4_1 = gr.mesh('bowlingpin', 'BowlingPin4_1')
+rootnode:add_child(BowlingPin4_1)
+BowlingPin4_1:set_material(red)
+BowlingPin4_1:scale(BowlingPin_scale[1], BowlingPin_scale[2], BowlingPin_scale[3])
+BowlingPin4_1:translate(BowlingPin_row1X-1.5*BowlingPin_gap, BowlingPin_bottom, BowlingPin_headPos-3*BowlingPin_gap)
+
+BowlingPin4_2 = gr.mesh('bowlingpin', 'BowlingPin4_2')
+rootnode:add_child(BowlingPin4_2)
+BowlingPin4_2:set_material(red)
+BowlingPin4_2:scale(BowlingPin_scale[1], BowlingPin_scale[2], BowlingPin_scale[3])
+BowlingPin4_2:translate(BowlingPin_row1X-0.5*BowlingPin_gap, BowlingPin_bottom, BowlingPin_headPos-3*BowlingPin_gap)
+
+BowlingPin4_3 = gr.mesh('bowlingpin', 'BowlingPin4_3')
+rootnode:add_child(BowlingPin4_3)
+BowlingPin4_3:set_material(red)
+BowlingPin4_3:scale(BowlingPin_scale[1], BowlingPin_scale[2], BowlingPin_scale[3])
+BowlingPin4_3:translate(BowlingPin_row1X+0.5*BowlingPin_gap, BowlingPin_bottom, BowlingPin_headPos-3*BowlingPin_gap)
+
+BowlingPin4_4 = gr.mesh('bowlingpin', 'BowlingPin4_4')
+rootnode:add_child(BowlingPin4_4)
+BowlingPin4_4:set_material(red)
+BowlingPin4_4:scale(BowlingPin_scale[1], BowlingPin_scale[2], BowlingPin_scale[3])
+BowlingPin4_4:translate(BowlingPin_row1X+1.5*BowlingPin_gap, BowlingPin_bottom, BowlingPin_headPos-3*BowlingPin_gap)
+
+return rootnode
